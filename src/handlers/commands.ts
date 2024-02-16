@@ -20,9 +20,13 @@ export default async function handleCommands(client: NermanClient) {
 	for (const commandFile of commands) {
 		const command: NermanCommand | NermanSubcommand = (await import(commandFile)).default;
 
-		if ((command as NermanSubcommand).subCommand && !(command as NermanSubcommand).isHidden) {
+		if (command.isHidden) {
+			continue;
+		}
+
+		if ((command as NermanSubcommand).subCommand) {
 			client.subCommands.set((command as NermanSubcommand).subCommand, command as NermanSubcommand);
-		} else if ((command as NermanCommand).data && !(command as NermanCommand).isHidden) {
+		} else if ((command as NermanCommand).data) {
 			commandsToRegister.push((command as NermanCommand).data.toJSON());
 			client.commands.set((command as NermanCommand).data.name, command as NermanCommand);
 		} else {
