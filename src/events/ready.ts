@@ -8,6 +8,7 @@ import listenToPropdatesEvents from "../listeners/propdates";
 import listenToLilNounsEvents from "../listeners/lil-nouns";
 import listenToProphouseEvents from "../listeners/prophouse";
 import listenToFarcasterEvents from "../listeners/farcaster";
+import listenToSnapshotEvents from "../listeners/snapshot";
 import { NermanClient } from "../types";
 
 export default {
@@ -24,5 +25,6 @@ export default {
 		listenToNounsEvents(client);
 		listenToPropdatesEvents(client);
 		listenToProphouseEvents(client);
+		listenToSnapshotEvents(client);
 	}
 };
