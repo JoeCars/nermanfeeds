@@ -8,9 +8,18 @@ interface House {
 	url: string;
 }
 
+interface Space {
+	id: string;
+	name: string;
+	url: string;
+}
+
 interface Options {
 	prophouse?: {
 		permittedHouses: House[];
+	};
+	snapshot?: {
+		spaces: Space[];
 	};
 }
 
@@ -26,6 +35,7 @@ export interface IFeedConfig {
 interface IFeedConfigMethods {
 	softDelete: () => Promise<HydratedDocument<IFeedConfig, IFeedConfigMethods>>;
 	includesHouse: (houseAddress: string) => boolean;
+	includesSpace: (spaceId: string) => boolean;
 }
 
 interface FeedConfigModel extends Model<IFeedConfig, {}, IFeedConfigMethods> {
@@ -77,6 +87,24 @@ const FeedConfigSchema = new Schema<IFeedConfig, FeedConfigModel, IFeedConfigMet
 				permittedHouses: [
 					{
 						address: {
+							type: String,
+							required: true
+						},
+						name: {
+							type: String,
+							required: true
+						},
+						url: {
+							type: String,
+							required: true
+						}
+					}
+				]
+			},
+			snapshot: {
+				spaces: [
+					{
+						id: {
 							type: String,
 							required: true
 						},
@@ -211,6 +239,17 @@ const FeedConfigSchema = new Schema<IFeedConfig, FeedConfigModel, IFeedConfigMet
 				}
 
 				return this.options.prophouse.permittedHouses.map((house: House) => house.address).includes(houseAddress);
+			},
+			includesSpace(spaceId: string) {
+				// All houses permitted if there are no options.
+				if (!this.options || !this.options.snapshot) {
+					return true;
+				}
+				if (this.options.snapshot.spaces.length <= 0) {
+					return true;
+				}
+
+				return this.options.snapshot.spaces.map((space: Space) => space.id).includes(spaceId);
 			}
 		}
 	}
