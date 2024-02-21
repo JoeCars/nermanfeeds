@@ -1,5 +1,16 @@
 import { Client, Collection, SlashCommandBuilder } from "discord.js";
-import { Farcaster, FederationNounsPool, LilNouns, Nouns, NounsFork, NounsNymz, PropHouse, Propdates, EventData } from "nerman";
+import {
+	Farcaster,
+	FederationNounsPool,
+	LilNouns,
+	Nouns,
+	NounsFork,
+	NounsNymz,
+	PropHouse,
+	Propdates,
+	EventData,
+	Snapshot
+} from "nerman";
 
 import ENSCache from "./utilities/ENSCache";
 import Router from "./utilities/Router";
@@ -17,6 +28,7 @@ export interface NermanClient extends Client {
 		lilNouns: LilNouns;
 		prophouse: PropHouse;
 		farcaster: Farcaster;
+		snapshot: Snapshot;
 		ensCache: ENSCache;
 		router: Router;
 	};
@@ -148,4 +160,10 @@ export namespace Events {
 		proposer: Account;
 	}
 	export interface ExecuteFork extends EventData.ExecuteFork {}
+	export interface SnapshotProposal extends EventData.Snapshot.Proposal {
+		author: Account;
+	}
+	export interface SnapshotVote extends EventData.Snapshot.Vote {
+		voter: Account;
+	}
 }
