@@ -34,7 +34,7 @@ export default {
 
 		const eventResults = [];
 		if (event === "all") {
-			const results = await FeedConfig.registerAllProjectFeeds(interaction.guildId!, channel.id, "PropHouse", options);
+			const results = await FeedConfig.registerAllProjectFeeds(interaction.guildId!, channel.id, "Snapshot", options);
 			eventResults.push(...results);
 		} else {
 			const results = await FeedConfig.registerFeed(interaction.guildId!, channel.id, event, options);
