@@ -10,11 +10,12 @@ import listenToProphouseEvents from "../listeners/prophouse";
 import listenToFarcasterEvents from "../listeners/farcaster";
 import listenToSnapshotEvents from "../listeners/snapshot";
 import { NermanClient } from "../types";
+import SnapshotSpace from "../database/SnapshotSpace";
 
 export default {
 	name: Events.ClientReady,
 	once: true,
-	execute(client: NermanClient) {
+	async execute(client: NermanClient) {
 		console.log(`events/ready: Ready! Logged in as ${client.user?.tag} in ${process.env.DEPLOY_STAGE} mode.`);
 
 		listenToFarcasterEvents(client);
@@ -26,5 +27,14 @@ export default {
 		listenToPropdatesEvents(client);
 		listenToProphouseEvents(client);
 		listenToSnapshotEvents(client);
+
+		try {
+			const spaces = await SnapshotSpace.find().exec();
+			for (const space of spaces) {
+				client.libraries.snapshot.addSpace(space.spaceId);
+			}
+		} catch (error) {
+			console.error("events/ready: Error when retrieving Snapshot spaces.", error);
+		}
 	}
 };
