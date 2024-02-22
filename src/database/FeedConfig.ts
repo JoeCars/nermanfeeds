@@ -10,7 +10,6 @@ interface House {
 
 interface Space {
 	id: string;
-	name: string;
 	url: string;
 }
 
@@ -105,10 +104,6 @@ const FeedConfigSchema = new Schema<IFeedConfig, FeedConfigModel, IFeedConfigMet
 				spaces: [
 					{
 						id: {
-							type: String,
-							required: true
-						},
-						name: {
 							type: String,
 							required: true
 						},
