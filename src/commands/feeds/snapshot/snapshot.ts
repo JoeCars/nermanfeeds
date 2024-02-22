@@ -53,6 +53,6 @@ export default {
 		}),
 
 	execute() {
-		console.log("commands/feeds/prophouse: Executed feeds command.");
+		console.log("commands/feeds/snapshot: Executed feeds command.");
 	}
 };
