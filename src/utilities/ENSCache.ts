@@ -16,7 +16,12 @@ export default class ENSCache {
 			return name;
 		}
 
-		name = await this.nouns.ensReverseLookup(walletAddress);
+		try {
+			name = await this.nouns.ensReverseLookup(walletAddress);
+		} catch (error) {
+			console.warn("utils/ENSCache: Unable fetch address. Shortening address instead.", error);
+			name = null;
+		}
 		if (!name) {
 			name = shortenAddress(walletAddress);
 		}
@@ -25,5 +30,3 @@ export default class ENSCache {
 		return name;
 	}
 }
-
-

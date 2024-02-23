@@ -63,6 +63,11 @@ events.set("prop-house-house-created", "PropHouse.HouseCreated");
 events.set("prop-house-vote-cast", "PropHouse.VoteCast");
 events.set("prop-house-proposal-submitted", "PropHouse.ProposalSubmitted");
 
+// Snapshot
+events.set("snapshot-proposal-created", "Snapshot.ProposalCreated");
+events.set("snapshot-proposal-completed", "Snapshot.ProposalCompleted");
+events.set("snapshot-vote-cast", "Snapshot.VoteCast");
+
 export default class Feeds {
 	public static filterByGroup(group: string) {
 		return [...events.entries()]
