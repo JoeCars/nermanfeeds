@@ -58,6 +58,11 @@ function generateFeedDisplay(feedConfigs: IFeedConfig[]) {
 					")";
 			}
 
+			if (config.options?.snapshot?.spaces.length! > 0) {
+				output +=
+					" (" + config.options?.snapshot?.spaces.map((space) => hyperlink(space.id, space.url)).join(", ") + ")";
+			}
+
 			return output;
 		})
 		.join("\n");
