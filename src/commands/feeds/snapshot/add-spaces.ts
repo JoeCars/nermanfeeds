@@ -1,4 +1,4 @@
-import { ChatInputCommandInteraction, TextChannel } from "discord.js";
+import { ChatInputCommandInteraction, TextChannel, inlineCode } from "discord.js";
 
 import FeedConfig from "../../../database/FeedConfig";
 import { NermanClient } from "../../../types";
@@ -63,9 +63,10 @@ export default {
 			});
 		}
 
+		const body = spaceIds.map((spaceId) => inlineCode(spaceId)).join(", ") + " added";
 		await interaction.reply({
 			ephemeral: true,
-			content: `${spaceIdsOptions} added!`
+			content: body
 		});
 
 		console.log("commands/feeds/snapshot: Finished adding new spaces.", {
