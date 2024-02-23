@@ -33,6 +33,7 @@ export default {
 			for (const space of spaces) {
 				client.libraries.snapshot.addSpace(space.spaceId);
 			}
+			console.debug("events/ready: Snapshot spaces.", client.libraries.snapshot.spaceIds);
 		} catch (error) {
 			console.error("events/ready: Error when retrieving Snapshot spaces.", error);
 		}
