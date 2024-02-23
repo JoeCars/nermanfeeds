@@ -1,5 +1,6 @@
 import { NermanClient, Events } from "../types";
 import * as embeds from "../embeds/snapshot";
+import FeedConfig from "../database/FeedConfig";
 
 export default async function listenToSnapshotEvents(client: NermanClient) {
 	const { snapshot, router, ensCache } = client.libraries;
@@ -17,7 +18,20 @@ export default async function listenToSnapshotEvents(client: NermanClient) {
 		};
 
 		console.log("listeners/snapshot: ProposalCreated embed data.", { ...embedData });
-		router.forEachFeedChannel("snapshot-proposal-created", (channel) => {
+		router.forEachFeedChannel("snapshot-proposal-created", async (channel) => {
+			try {
+				const feedConfig = await FeedConfig.findOne({
+					channelId: channel.id,
+					guildId: channel.guildId,
+					eventName: "snapshot-proposal-created"
+				}).exec();
+				if (!feedConfig?.includesSpace(embedData.space.id)) {
+					return;
+				}
+			} catch (error) {
+				console.error("listeners/snapshot: Unable to retrieve FeedConfig for Snapshot.", error);
+			}
+
 			const embed = embeds.generateProposalCreatedEmbed(embedData);
 			channel.send({ embeds: [embed] });
 		});
@@ -36,7 +50,20 @@ export default async function listenToSnapshotEvents(client: NermanClient) {
 		};
 
 		console.log("listeners/snapshot: ProposalCompleted embed data.", { ...embedData });
-		router.forEachFeedChannel("snapshot-proposal-completed", (channel) => {
+		router.forEachFeedChannel("snapshot-proposal-completed", async (channel) => {
+			try {
+				const feedConfig = await FeedConfig.findOne({
+					channelId: channel.id,
+					guildId: channel.guildId,
+					eventName: "snapshot-proposal-completed"
+				}).exec();
+				if (!feedConfig?.includesSpace(embedData.space.id)) {
+					return;
+				}
+			} catch (error) {
+				console.error("listeners/snapshot: Unable to retrieve FeedConfig for Snapshot.", error);
+			}
+
 			const embed = embeds.generateProposalCompletedEmbed(embedData);
 			channel.send({ embeds: [embed] });
 		});
@@ -53,7 +80,20 @@ export default async function listenToSnapshotEvents(client: NermanClient) {
 		};
 
 		console.log("listeners/snapshot: VoteCast embed data.", { ...embedData });
-		router.forEachFeedChannel("snapshot-vote-cast", (channel) => {
+		router.forEachFeedChannel("snapshot-vote-cast", async (channel) => {
+			try {
+				const feedConfig = await FeedConfig.findOne({
+					channelId: channel.id,
+					guildId: channel.guildId,
+					eventName: "snapshot-vote-cast"
+				}).exec();
+				if (!feedConfig?.includesSpace(embedData.space.id)) {
+					return;
+				}
+			} catch (error) {
+				console.error("listeners/snapshot: Unable to retrieve FeedConfig for Snapshot.", error);
+			}
+
 			const embed = embeds.generateVoteCastEmbed(embedData);
 			channel.send({ embeds: [embed] });
 		});
