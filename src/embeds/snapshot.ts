@@ -59,9 +59,9 @@ export function generateVoteCastEmbed(data: Events.SnapshotVote) {
 
 	const results = _formatChoiceScores(data.proposal.choices, data.proposal.scores);
 
-	const description = `${voter} cast ${votingPower} votes for ${choice} in ${space}'s ${proposal}!\n\n${reason}\n\n${bold(
-		"Current Status:"
-	)}\n${results}`;
+	const description = `${voter} cast ${votingPower} votes for ${choice} in ${space}'s ${proposal}!${
+		reason ? "\n\n" + reason : ""
+	}\n\n${bold("Current Status:")}\n${results}`;
 
 	const embed = new EmbedBuilder().setColor("#00FFFF").setTitle("Snapshot | New Vote Cast").setDescription(description);
 
