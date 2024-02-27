@@ -1,5 +1,5 @@
 import { Schema, model, Types } from "mongoose";
-import { EventData } from "nerman";
+import { Events } from "../types";
 
 const PROJECT_OPTIONS = ["Nouns", "LilNouns", "NounsFork0"] as const;
 type ProjectOptions = (typeof PROJECT_OPTIONS)[number];
@@ -49,7 +49,7 @@ const ProposalSchema = new Schema(
 	{
 		timestamps: true,
 		statics: {
-			async tryCreateProposal(data: EventData.ProposalCreatedWithRequirements, project: ProjectOptions) {
+			async tryCreateProposal(data: Events.ProposalCreated, project: ProjectOptions) {
 				let proposal = await this.findOne({ proposalId: Number(data.id) }).exec();
 				if (proposal) {
 					return proposal;
@@ -63,8 +63,8 @@ const ProposalSchema = new Schema(
 					_id: new Types.ObjectId(),
 					proposalId: Number(data.id),
 					proposerId: data.proposer.id,
-					startBlock: data.startBlock,
-					endBlock: data.endBlock,
+					startBlock: Number(data.startBlock),
+					endBlock: Number(data.endBlock),
 					quorumVotes: data.quorumVotes,
 					proposalThreshold: data.proposalThreshold,
 					title: title,
