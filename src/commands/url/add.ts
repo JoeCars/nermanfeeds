@@ -16,7 +16,7 @@ export default {
 		let urlConfig;
 		try {
 			urlConfig = await UrlConfig.findOne({
-				guildId: interaction.guildId
+				guildId: interaction.guildId!
 			}).exec();
 		} catch (error) {
 			console.error("commands/url/add: Unable to retrieve UrlConfig due to a database issue.", {

@@ -15,7 +15,7 @@ export default {
 		let oldConfig;
 		try {
 			oldConfig = await UrlConfig.findOne({
-				guildId: interaction.guildId
+				guildId: interaction.guildId!
 			}).exec();
 		} catch (error) {
 			console.error("commands/url/remove: Unable to find config due to an error.", {

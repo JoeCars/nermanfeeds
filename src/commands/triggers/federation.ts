@@ -37,7 +37,7 @@ export default {
 					support: 1,
 					amount: BigInt(0.42 * WEI_PER_ETH),
 					bidder: { id: "0x2B0E9aA394209fa8D783C9e8cbFb08A15C019cdF" },
-					reason: ""
+					event: {} as any
 				});
 				break;
 			case "federation-vote-cast":
@@ -46,7 +46,8 @@ export default {
 					propId: 346,
 					support: 1,
 					amount: BigInt(0.42 * WEI_PER_ETH),
-					bidder: { id: "0x2B0E9aA394209fa8D783C9e8cbFb08A15C019cdF" }
+					bidder: { id: "0x2B0E9aA394209fa8D783C9e8cbFb08A15C019cdF" },
+					event: {} as any
 				});
 				break;
 			default:

@@ -53,7 +53,7 @@ export default {
 
 			const feeds = await FeedConfig.find({
 				channelId: channel.id,
-				guildId: interaction.guildId,
+				guildId: interaction.guildId!,
 				eventName: { $regex: /snapshot/, $options: "i" } // Finds all snapshot events.
 			}).exec();
 
