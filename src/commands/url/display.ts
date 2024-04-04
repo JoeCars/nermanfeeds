@@ -15,7 +15,7 @@ export default {
 		let config;
 		try {
 			config = await UrlConfig.findOne({
-				guildId: interaction.guildId
+				guildId: interaction.guildId!
 			}).exec();
 		} catch (error) {
 			console.error("commands/url/display: Unable to display config due to a database issue.", {

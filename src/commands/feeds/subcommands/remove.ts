@@ -39,7 +39,7 @@ async function removeFeed(interaction: ChatInputCommandInteraction, channelId: s
 	let result;
 	try {
 		result = await FeedConfig.deleteOne({
-			guildId: interaction.guildId,
+			guildId: interaction.guildId!,
 			channelId: channelId,
 			eventName: eventKey,
 			isDeleted: {
