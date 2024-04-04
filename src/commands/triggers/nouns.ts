@@ -135,7 +135,7 @@ export default {
 				nouns.trigger("EscrowedToFork", {
 					forkId: 0,
 					owner: { id: "0x281eC184E704CE57570614C33B3477Ec7Ff07243" },
-					tokenIds: [117n, 112n],
+					tokenIds: [117, 112],
 					proposalIds: [],
 					reason: "Bad.",
 					event: {} as any
@@ -155,7 +155,7 @@ export default {
 				nouns.trigger("JoinFork", {
 					forkId: 0,
 					owner: { id: "0x281eC184E704CE57570614C33B3477Ec7Ff07243" },
-					tokenIds: [117n, 420n, 115n],
+					tokenIds: [117, 420, 115],
 					proposalIds: [],
 					reason: "Really good reason.",
 					event: {} as any
