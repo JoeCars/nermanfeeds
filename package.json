@@ -18,7 +18,7 @@
 		"discord.js": "^14.14.1",
 		"dotenv": "^16.4.1",
 		"mongoose": "^8.1.1",
-		"nerman": "^0.2.0"
+		"nerman": "^1.2.0"
 	},
 	"devDependencies": {
 		"jest": "^29.7.0",
