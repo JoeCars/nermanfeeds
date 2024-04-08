@@ -32,7 +32,7 @@ async function removeAllFeeds(interaction: ChatInputCommandInteraction, channelI
 	let result;
 	try {
 		result = await FeedConfig.deleteMany({
-			guildId: interaction.guildId,
+			guildId: interaction.guildId!,
 			channelId: channelId,
 			isDeleted: {
 				$ne: true
