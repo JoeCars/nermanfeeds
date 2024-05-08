@@ -90,7 +90,7 @@ export default {
 				});
 				break;
 			case "nouns-dao-proposal-created":
-				nouns.trigger("ProposalCreatedWithRequirements", {
+				nouns.trigger("ProposalCreated", {
 					id: 117,
 					proposer: { id: "0x281eC184E704CE57570614C33B3477Ec7Ff07243" },
 					targets: [],
@@ -100,9 +100,7 @@ export default {
 					startBlock: 0n,
 					endBlock: 0n,
 					description: "# The Lost Continent \n",
-					event: {} as any,
-					proposalThreshold: 0,
-					quorumVotes: 0
+					event: {} as any
 				});
 				break;
 			case "nouns-dao-proposal-status-change":

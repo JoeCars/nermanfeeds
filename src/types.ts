@@ -72,7 +72,7 @@ export namespace Events {
 		bidder: Account;
 	}
 	export interface AuctionCreated extends EventData.AuctionCreated {}
-	export interface ProposalCreated extends EventData.ProposalCreatedWithRequirements {
+	export interface ProposalCreated extends EventData.ProposalCreated {
 		proposalTitle: string;
 	}
 	export interface ProposalStatusChange extends EventData.ProposalCanceled {
