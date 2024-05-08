@@ -151,8 +151,8 @@ export default async function listenToNounsEvents(client: NermanClient) {
 		});
 	});
 
-	nouns.on("ProposalCreatedWithRequirements", async (data) => {
-		console.log("listeners/nouns: On ProposalCreatedWithRequirements.", { ...data });
+	nouns.on("ProposalCreated", async (data) => {
+		console.log("listeners/nouns: On ProposalCreated.", { ...data });
 
 		try {
 			await Proposal.tryCreateProposal(data, "Nouns");

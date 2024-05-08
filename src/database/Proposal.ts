@@ -49,7 +49,10 @@ const ProposalSchema = new Schema(
 	{
 		timestamps: true,
 		statics: {
-			async tryCreateProposal(data: EventData.ProposalCreatedWithRequirements, project: ProjectOptions) {
+			async tryCreateProposal(
+				data: EventData.ProposalCreatedWithRequirements | EventData.ProposalCreated,
+				project: ProjectOptions
+			) {
 				let proposal = await this.findOne({ proposalId: Number(data.id) }).exec();
 				if (proposal) {
 					return proposal;
@@ -59,18 +62,19 @@ const ProposalSchema = new Schema(
 				const title = data.description.substring(1, titleEndIndex).trim(); // Title is formatted as '# Title \n'
 				const description = data.description.substring(titleEndIndex + 1).trim();
 
-				proposal = await this.create({
-					_id: new Types.ObjectId(),
-					proposalId: Number(data.id),
-					proposerId: data.proposer.id,
-					startBlock: Number(data.startBlock),
-					endBlock: Number(data.endBlock),
-					quorumVotes: data.quorumVotes,
-					proposalThreshold: data.proposalThreshold,
-					title: title,
-					description: description,
-					project: project
-				});
+				if (data)
+					proposal = await this.create({
+						_id: new Types.ObjectId(),
+						proposalId: Number(data.id),
+						proposerId: data.proposer.id,
+						startBlock: Number(data.startBlock),
+						endBlock: Number(data.endBlock),
+						quorumVotes: (data as EventData.ProposalCreatedWithRequirements)["quorumVotes"] || 0,
+						proposalThreshold: (data as EventData.ProposalCreatedWithRequirements)["proposalThreshold"] || 0,
+						title: title,
+						description: description,
+						project: project
+					});
 				return proposal;
 			},
 
