@@ -368,9 +368,12 @@ export function generatePropVoteCastEmbed(data: Events.VoteCast, proposalUrl: st
 
 	if (reason.length > MAX_REASON_LENGTH) {
 		reason = reason.substring(0, MAX_REASON_LENGTH).trim() + "...";
-		if (data.event?.transactionHash) {
-			reason += "\n" + hyperlink("read more", `https://www.mmmogu.com/tx/${data.event?.transactionHash}`);
-		}
+		reason +=
+			"\n" +
+			hyperlink(
+				"read more",
+				`https://www.nouns.camp/proposals/${data.proposalId}#${data.voter.id.toLowerCase()}-${data.proposalId}`
+			);
 	}
 
 	if (hasMarkdown) {
