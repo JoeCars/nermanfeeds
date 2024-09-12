@@ -59,12 +59,6 @@ const options = {
 	heartbeatFrequencyMS: 10000,
 	autoIndex: false
 };
-mongoose.connection.on("error", (error) => {
-	console.error("index: Database error.", error);
-});
-mongoose.connection.on("connected", () => {
-	console.log("index: Database connection established.");
-});
 mongoose.set("strictQuery", true);
 mongoose.connect(mongoURI!, options).catch((error: unknown) => {
 	console.error("index: Unable to connect to database.", error);
