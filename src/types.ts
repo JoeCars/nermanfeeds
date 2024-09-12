@@ -1,16 +1,5 @@
 import { Client, Collection, SlashCommandBuilder } from "discord.js";
-import {
-	Farcaster,
-	FederationNounsPool,
-	LilNouns,
-	Nouns,
-	NounsFork,
-	NounsNymz,
-	PropHouse,
-	Propdates,
-	EventData,
-	Snapshot
-} from "nerman";
+import { Farcaster, FederationNounsPool, LilNouns, Nouns, NounsFork, NounsNymz, Propdates, EventData, Snapshot } from "nerman";
 
 import ENSCache from "./utilities/ENSCache";
 import Router from "./utilities/Router";
@@ -26,7 +15,6 @@ export interface NermanClient extends Client {
 		nounsFork: NounsFork;
 		propdates: Propdates;
 		lilNouns: LilNouns;
-		prophouse: PropHouse;
 		farcaster: Farcaster;
 		snapshot: Snapshot;
 		ensCache: ENSCache;
@@ -146,18 +134,6 @@ export namespace Events {
 	}
 	export interface PropdatesPostUpdate extends EventData.Propdates.PostUpdate {
 		proposalTitle: string;
-	}
-	export interface PropHouseRoundCreated extends EventData.PropHouse.RoundCreated {
-		creator: Account;
-	}
-	export interface PropHouseHouseCreated extends EventData.PropHouse.HouseCreated {
-		creator: Account;
-	}
-	export interface PropHouseVoteCast extends EventData.PropHouse.VoteCast {
-		voter: Account;
-	}
-	export interface PropHouseProposalSubmitted extends EventData.PropHouse.ProposalSubmitted {
-		proposer: Account;
 	}
 	export interface ExecuteFork extends EventData.ExecuteFork {}
 	export interface SnapshotProposal extends EventData.Snapshot.Proposal {

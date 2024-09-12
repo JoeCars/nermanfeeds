@@ -51,13 +51,6 @@ function generateFeedDisplay(feedConfigs: IFeedConfig[]) {
 		.map((config) => {
 			let output = "- " + inlineCode(Feeds.get(config.eventName)!);
 
-			if (config.options?.prophouse?.permittedHouses.length! > 0) {
-				output +=
-					" (" +
-					config.options?.prophouse?.permittedHouses.map((house) => hyperlink(house.name, house.url)).join(", ") +
-					")";
-			}
-
 			if (config.options?.snapshot?.spaces.length! > 0) {
 				output +=
 					" (" + config.options?.snapshot?.spaces.map((space) => hyperlink(space.id, space.url)).join(", ") + ")";

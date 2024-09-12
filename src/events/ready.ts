@@ -6,7 +6,6 @@ import listenToNounsNymzEvents from "../listeners/nouns-nymz";
 import listenToNounsForkEvents from "../listeners/nouns-fork";
 import listenToPropdatesEvents from "../listeners/propdates";
 import listenToLilNounsEvents from "../listeners/lil-nouns";
-import listenToProphouseEvents from "../listeners/prophouse";
 import listenToFarcasterEvents from "../listeners/farcaster";
 import listenToSnapshotEvents from "../listeners/snapshot";
 import { NermanClient } from "../types";
@@ -25,7 +24,6 @@ export default {
 		listenToNounsNymzEvents(client);
 		listenToNounsEvents(client);
 		listenToPropdatesEvents(client);
-		listenToProphouseEvents(client);
 		listenToSnapshotEvents(client);
 
 		try {

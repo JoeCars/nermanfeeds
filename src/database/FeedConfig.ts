@@ -2,21 +2,12 @@ import { Schema, model, Types, HydratedDocument, Model, ObjectId } from "mongoos
 
 import Feeds from "../utilities/Feeds";
 
-interface House {
-	address: string;
-	name: string;
-	url: string;
-}
-
 interface Space {
 	id: string;
 	url: string;
 }
 
 interface Options {
-	prophouse?: {
-		permittedHouses: House[];
-	};
 	snapshot?: {
 		spaces: Space[];
 	};
@@ -33,7 +24,6 @@ export interface IFeedConfig {
 
 interface IFeedConfigMethods {
 	softDelete: () => Promise<HydratedDocument<IFeedConfig, IFeedConfigMethods>>;
-	includesHouse: (houseAddress: string) => boolean;
 	includesSpace: (spaceId: string) => boolean;
 }
 
@@ -82,24 +72,6 @@ const FeedConfigSchema = new Schema<IFeedConfig, FeedConfigModel, IFeedConfigMet
 			default: false
 		},
 		options: {
-			prophouse: {
-				permittedHouses: [
-					{
-						address: {
-							type: String,
-							required: true
-						},
-						name: {
-							type: String,
-							required: true
-						},
-						url: {
-							type: String,
-							required: true
-						}
-					}
-				]
-			},
 			snapshot: {
 				spaces: [
 					{
@@ -224,19 +196,7 @@ const FeedConfigSchema = new Schema<IFeedConfig, FeedConfigModel, IFeedConfigMet
 				this.isDeleted = true;
 				return this.save();
 			},
-			includesHouse(houseAddress: string) {
-				// All houses permitted if there are no options.
-				if (!this.options || !this.options.prophouse) {
-					return true;
-				}
-				if (this.options.prophouse.permittedHouses.length <= 0) {
-					return true;
-				}
-
-				return this.options.prophouse.permittedHouses.map((house: House) => house.address).includes(houseAddress);
-			},
 			includesSpace(spaceId: string) {
-				// All houses permitted if there are no options.
 				if (!this.options || !this.options.snapshot) {
 					return true;
 				}
