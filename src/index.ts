@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { Client, Events, GatewayIntentBits } from "discord.js";
 import mongoose from "mongoose";
-import { FederationNounsPool, Nouns, NounsNymz, NounsFork, Propdates, LilNouns, PropHouse, Farcaster, Snapshot } from "nerman";
+import { FederationNounsPool, Nouns, NounsNymz, NounsFork, Propdates, LilNouns, Farcaster, Snapshot } from "nerman";
 
 import { NermanClient } from "./types";
 import handleCommands from "./handlers/commands";
@@ -40,7 +40,6 @@ const nouns = new Nouns(process.env.JSON_RPC_URL!, { pollingTime: 60_000 });
 	nounsFork: new NounsFork(nouns.provider),
 	propdates: new Propdates(nouns.provider),
 	lilNouns: new LilNouns(nouns.provider),
-	prophouse: new PropHouse(process.env.JSON_RPC_URL!),
 	farcaster: new Farcaster(),
 	snapshot: new Snapshot(),
 	ensCache: new ENSCache(nouns),
@@ -60,12 +59,6 @@ const options = {
 	heartbeatFrequencyMS: 10000,
 	autoIndex: false
 };
-mongoose.connection.on("error", (error) => {
-	console.error("index: Database error.", error);
-});
-mongoose.connection.on("connected", () => {
-	console.log("index: Database connection established.");
-});
 mongoose.set("strictQuery", true);
 mongoose.connect(mongoURI!, options).catch((error: unknown) => {
 	console.error("index: Unable to connect to database.", error);

@@ -57,12 +57,6 @@ events.set("nouns-dao-data-proposal-feedback-sent", "Nouns.DAOData.ProposalFeedb
 // Propdates
 events.set("propdates-post-update", "Propdates.PostUpdate");
 
-// PropHouse
-events.set("prop-house-round-created", "PropHouse.RoundCreated");
-events.set("prop-house-house-created", "PropHouse.HouseCreated");
-events.set("prop-house-vote-cast", "PropHouse.VoteCast");
-events.set("prop-house-proposal-submitted", "PropHouse.ProposalSubmitted");
-
 // Snapshot
 events.set("snapshot-proposal-created", "Snapshot.ProposalCreated");
 events.set("snapshot-proposal-completed", "Snapshot.ProposalCompleted");
