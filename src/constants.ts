@@ -4,3 +4,4 @@ export const MAX_TITLE_LENGTH = 250; // Actually 256 in Discord but leaving spac
 export const UNKNOWN_CHANNEL_ERROR_CODE = 10003; // https://discord.com/developers/docs/topics/opcodes-and-status-codes
 export const MAX_THREAD_NAME_LENGTH = 96;
 export const WEI_PER_ETH = 1000000000000000000;
+export const POLLING_TIME_MS = 60_000;

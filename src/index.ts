@@ -8,6 +8,7 @@ import handleCommands from "./handlers/commands";
 import ENSCache from "./utilities/ENSCache";
 import Router from "./utilities/Router";
 import handleEvents from "./handlers/events";
+import { POLLING_TIME_MS } from "./constants";
 
 // Reformatting logs.
 const log = console.log;
@@ -32,7 +33,7 @@ const client = new Client({
 	]
 });
 
-const nouns = new Nouns(process.env.JSON_RPC_URL!, { pollingTime: 60_000 });
+const nouns = new Nouns(process.env.JSON_RPC_URL!, { pollingTime: Number(process.env.POLLING_TIME_MS) ?? POLLING_TIME_MS });
 (client as NermanClient).libraries = {
 	nouns: nouns,
 	nounsNymz: new NounsNymz(),
