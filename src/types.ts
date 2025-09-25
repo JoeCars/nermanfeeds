@@ -1,5 +1,5 @@
 import { Client, Collection, SlashCommandBuilder } from "discord.js";
-import { Farcaster, FederationNounsPool, LilNouns, Nouns, NounsFork, NounsNymz, Propdates, EventData, Snapshot } from "nerman";
+import { Farcaster, FederationNounsPool, LilNouns, Nouns, NounsFork, Propdates, EventData, Snapshot } from "nerman";
 
 import ENSCache from "./utilities/ENSCache";
 import Router from "./utilities/Router";
@@ -10,7 +10,6 @@ export interface NermanClient extends Client {
 	subCommands: Collection<string, NermanSubcommand>;
 	libraries: {
 		nouns: Nouns;
-		nounsNymz: NounsNymz;
 		federation: FederationNounsPool;
 		nounsFork: NounsFork;
 		propdates: Propdates;
@@ -84,9 +83,6 @@ export namespace Events {
 	export interface NounCreated extends EventData.NounCreated {}
 	export interface Quit extends EventData.Quit {
 		msgSender: Account;
-	}
-	export interface NounsNymzPost extends EventData.NounsNymz.NewPost {
-		doxed: boolean;
 	}
 	export interface AuctionEnd extends EventData.AuctionComplete {
 		bidder: Account;

@@ -2,7 +2,6 @@ import { Events } from "discord.js";
 
 import listenToFederationEvents from "../listeners/federation";
 import listenToNounsEvents from "../listeners/nouns";
-import listenToNounsNymzEvents from "../listeners/nouns-nymz";
 import listenToNounsForkEvents from "../listeners/nouns-fork";
 import listenToPropdatesEvents from "../listeners/propdates";
 import listenToLilNounsEvents from "../listeners/lil-nouns";
@@ -21,7 +20,6 @@ export default {
 		listenToFederationEvents(client);
 		listenToLilNounsEvents(client);
 		listenToNounsForkEvents(client);
-		listenToNounsNymzEvents(client);
 		listenToNounsEvents(client);
 		listenToPropdatesEvents(client);
 		listenToSnapshotEvents(client);

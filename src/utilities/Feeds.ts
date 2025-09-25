@@ -28,9 +28,6 @@ events.set("nouns-fork-tokens-delegate-changed", "NounsFork.Tokens.DelegateChang
 events.set("nouns-fork-tokens-transfer", "NounsFork.Tokens.Transfer");
 events.set("nouns-fork-tokens-noun-created", "NounsFork.Tokens.NounCreated");
 
-// NounsNymz
-events.set("nouns-nymz-new-post", "NounsNymz.NewPost");
-
 // Nouns
 events.set("nouns-auction-house-auction-bid", "Nouns.AuctionHouse.AuctionBid");
 events.set("nouns-auction-house-auction-created", "Nouns.AuctionHouse.AuctionCreated");

@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { Client, Events, GatewayIntentBits } from "discord.js";
 import mongoose from "mongoose";
-import { FederationNounsPool, Nouns, NounsNymz, NounsFork, Propdates, LilNouns, Farcaster, Snapshot } from "nerman";
+import { FederationNounsPool, Nouns, NounsFork, Propdates, LilNouns, Farcaster, Snapshot } from "nerman";
 
 import { NermanClient } from "./types";
 import handleCommands from "./handlers/commands";
@@ -36,7 +36,6 @@ const client = new Client({
 const nouns = new Nouns(process.env.JSON_RPC_URL!, { pollingTime: Number(process.env.POLLING_TIME_MS) ?? POLLING_TIME_MS });
 (client as NermanClient).libraries = {
 	nouns: nouns,
-	nounsNymz: new NounsNymz(),
 	federation: new FederationNounsPool(nouns.provider),
 	nounsFork: new NounsFork(nouns.provider),
 	propdates: new Propdates(nouns.provider),
